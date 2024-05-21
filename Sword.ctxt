@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Sword
+comment1.params=
+comment1.target=void\ swingSword()
+comment2.params=
+comment2.target=void\ checkEnemyCollision()
+comment3.params=enemy
+comment3.target=void\ processEnemyHit(Enemy)
+comment4.params=
+comment4.target=void\ act()
+numComments=5
