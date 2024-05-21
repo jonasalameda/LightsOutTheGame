@@ -55,9 +55,6 @@ public class MyWorld extends World
     }
     public void act() {
         spawnMoreEnemies();
-        if (getObjects(Enemy.class).size() == 0)
-            Greenfoot.setWorld(new GameWin());
-        
     }
     
 }

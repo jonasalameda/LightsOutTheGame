@@ -22,7 +22,7 @@ public class VanierLogo extends World
     public void act() {
                if (System.currentTimeMillis() >= (timeMenuCreation + (5 * 1000)))
         {
-            Greenfoot.setWorld(new GameWin());
+            Greenfoot.setWorld(new MainMenu());
         }
 
     }
