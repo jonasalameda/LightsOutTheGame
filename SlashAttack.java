@@ -23,7 +23,7 @@ public class SlashAttack extends Actor
     public void act()
     {
         long currentHit = System.currentTimeMillis();
-        if(currentHit > initialTime + 1000)
+        if(currentHit > initialTime + 600)
         {
             if (getWorld() != null)
             {
@@ -32,7 +32,7 @@ public class SlashAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime + 500){
+            if(currentHit > initialTime + 200){
                 turn(2);
                 checkEnemyCollision();
             }

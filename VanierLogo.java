@@ -15,15 +15,14 @@ public class VanierLogo extends World
      */
     public VanierLogo()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 900x473 cells with a cell size of 1x1 pixels.
         super(900, 473, 1); 
     }
     
     public void act() {
-               if (System.currentTimeMillis() >= (timeMenuCreation + (5 * 1000)))
+        if (System.currentTimeMillis() >= (timeMenuCreation + (5 * 1000)))
         {
             Greenfoot.setWorld(new MainMenu());
         }
-
     }
 }

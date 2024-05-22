@@ -8,4 +8,6 @@ comment2.params=
 comment2.target=void\ act()
 comment3.params=v
 comment3.target=void\ alignWithVector(Vector2D)
-numComments=4
+comment4.params=
+comment4.target=void\ checkRoomTransition1()
+numComments=5

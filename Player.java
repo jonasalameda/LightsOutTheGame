@@ -33,7 +33,7 @@ public class Player extends Actor
    
     public void act()
     {
-       
+        int enemyCounter = getWorld().getObjects(Enemy.class).size();
         if (Greenfoot.isKeyDown("space"))
         {
             attackSlash();
@@ -66,6 +66,10 @@ public class Player extends Actor
                 getWorld().addObject(attack, getX(), getY());
             }
         }
+        System.out.println(enemyCounter);
+          if (enemyCounter == 0){
+            checkRoomTransition1();
+        }
     }
     
     public void alignWithVector(Vector2D v) {
@@ -76,6 +80,16 @@ public class Player extends Actor
             double angleDegrees = Math.toDegrees(angleRadians);
             
             setRotation((int) angleDegrees);
+    }
+    
+        public void checkRoomTransition1() {
+        if (getY() <= 10) {
+            System.out.println("Transition to Next room");
+            Greenfoot.setWorld(new MyWorld());
+        } else if (getY()>getWorld().getHeight()-10) {
+            System.out.println("Transition to Previous room");
+            Greenfoot.setWorld(new MyWorld());
+        }
     }
 }
 
