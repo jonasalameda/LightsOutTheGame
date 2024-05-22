@@ -32,17 +32,11 @@ public class SlashAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime + 180){
+            if(currentHit > initialTime + 100){
                 checkEnemyCollision();
             }
         }
         
-        MouseInfo mouse = Greenfoot.getMouseInfo();
-        if (mouse != null) {
-            Vector2D slashToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
-            
-            alignWithVector(slashToMouse);
-        }
     }
 
         public void checkEnemyCollision()
