@@ -32,7 +32,7 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        addObject(player,300,400);
+        addObject(player,300,500);
     }
     public void spawnMoreEnemies()
     {
@@ -44,6 +44,7 @@ public class MyWorld extends World
             lastAdded = curTime;
             currentEnemies++;
         }
+        
     }
     public void act() {
         spawnMoreEnemies();

@@ -23,7 +23,7 @@ public class SlashAttack extends Actor
     public void act()
     {
         long currentHit = System.currentTimeMillis();
-        if(currentHit > initialTime + 600)
+        if(currentHit > initialTime + 200)
         {
             if (getWorld() != null)
             {
@@ -32,11 +32,16 @@ public class SlashAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime + 200){
-                turn(2);
+            if(currentHit > initialTime + 180){
                 checkEnemyCollision();
             }
+        }
+        
+        MouseInfo mouse = Greenfoot.getMouseInfo();
+        if (mouse != null) {
+            Vector2D slashToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
             
+            alignWithVector(slashToMouse);
         }
     }
 
@@ -57,5 +62,15 @@ public class SlashAttack extends Actor
         } else {
             getWorld().removeObject(enemy);
         }
+    }
+    
+        public void alignWithVector(Vector2D v) {
+            double adjacent = v.getX();
+            double opposite = v.getY();
+            
+            double angleRadians = Math.atan2(opposite, adjacent);
+            double angleDegrees = Math.toDegrees(angleRadians);
+            
+            setRotation((int) angleDegrees);
     }
 }

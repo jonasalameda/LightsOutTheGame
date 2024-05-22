@@ -20,7 +20,6 @@ public class Enemy extends Actor
     }
 
     public void act() {
-        
         moveAround();
         dealDamage();
     }

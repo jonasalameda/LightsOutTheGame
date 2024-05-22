@@ -51,7 +51,6 @@ public class Player extends Actor
             setLocation(getX() + speed, getY()); // Move right
         }
         MouseInfo mouse = Greenfoot.getMouseInfo();
-        
         if (mouse != null) {
             Vector2D slashToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
             
@@ -66,7 +65,6 @@ public class Player extends Actor
                 getWorld().addObject(attack, getX(), getY());
             }
         }
-        System.out.println(enemyCounter);
           if (enemyCounter == 0){
             checkRoomTransition1();
         }
