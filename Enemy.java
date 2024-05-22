@@ -10,7 +10,7 @@ public class Enemy extends Actor
 {
     // instance variables - replace the example below with your own
     private int x;
-    public int health = 20;
+    public int health = 5;
     long lastHit = System.currentTimeMillis();
     /**
      * Constructor for objects of class Enemy

@@ -44,7 +44,6 @@ public class MyWorld extends World
             lastAdded = curTime;
             currentEnemies++;
         }
-        
     }
     public void act() {
         spawnMoreEnemies();

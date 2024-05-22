@@ -32,7 +32,7 @@ public class SlashAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime + 100){
+            if(currentHit > initialTime + 150){
                 checkEnemyCollision();
             }
         }
@@ -47,12 +47,11 @@ public class SlashAttack extends Actor
            processEnemyHit((Enemy) enemy);
         }
     }
-    public void processEnemyHit( Enemy enemy)
+    public void processEnemyHit(Enemy enemy)
     {
         // You could remove health here before in a doDamage method on the enemy for example
         if (enemy.health != 0) {
             enemy.health -= 1;
-            Greenfoot.delay(1);
         } else {
             getWorld().removeObject(enemy);
         }
