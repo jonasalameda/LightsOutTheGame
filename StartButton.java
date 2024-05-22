@@ -16,12 +16,12 @@ public void act()
     {
         if (Greenfoot.mouseMoved(this))
         {
-            setImage("Option1_Button_Highlighted.png");
+            setImage("StartButton.png");
         }
 
         if (Greenfoot.mouseMoved(getWorld()))
         {
-            setImage("Option1_Button.png");
+            setImage("StartButton.png");
         }
 
         if (Greenfoot.mouseClicked(this))
