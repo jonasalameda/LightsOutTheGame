@@ -13,7 +13,7 @@ public class SlashAttack extends Actor
     long initialTime = System.currentTimeMillis();
     public SlashAttack()
     {
-        mySlash = new GifImage("Slash1.gif");
+        mySlash = new GifImage("slash.gif");
     }
     public SlashAttack(int rotation)
     {
@@ -29,7 +29,11 @@ public class SlashAttack extends Actor
         long currentHit = System.currentTimeMillis();
         Vector2D slashToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
         alignWithVector(slashToMouse);
-        if(currentHit > initialTime + 200)
+        if (currentHit > initialTime + 100) {
+            myImage1 = mySlash.getCurrentImage();
+            setImage(myImage1);
+        }
+        if(currentHit > initialTime + 500)
         {
             if (getWorld() != null)
             {
@@ -38,13 +42,11 @@ public class SlashAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime + 150){
+            if(currentHit > initialTime + 450){
                 checkEnemyCollision();
             }
         }
         
-        myImage1 = mySlash.getCurrentImage();
-        setImage(myImage1);
     }
 
         public void checkEnemyCollision()

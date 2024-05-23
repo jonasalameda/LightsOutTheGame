@@ -11,7 +11,7 @@ public class Player extends Actor
     public Sword sword;
     private int speed = 4;
     private int maxHealth = 100;
-    public int health = maxHealth;
+    public int health = 100;
     long lastSlash = System.currentTimeMillis();
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
@@ -47,7 +47,7 @@ public class Player extends Actor
             setLocation(getX() + speed, getY()); // Move right
         }
         MouseInfo mouse = Greenfoot.getMouseInfo();
-        if (mouse != null) {
+        if (mouse != null && getObjectsInRange(300, SlashAttack.class).isEmpty()) {
             Vector2D playerToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
             alignWithVector(playerToMouse);
             
