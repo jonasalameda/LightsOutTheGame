@@ -8,9 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SlashAttack extends Actor
 {
+    GifImage mySlash;
+    GreenfootImage myImage1;
     long initialTime = System.currentTimeMillis();
     public SlashAttack()
     {
+        mySlash = new GifImage("Slash1.gif");
     }
     public SlashAttack(int rotation)
     {
@@ -22,7 +25,10 @@ public class SlashAttack extends Actor
      */
     public void act()
     {
+        MouseInfo mouse = Greenfoot.getMouseInfo();
         long currentHit = System.currentTimeMillis();
+        Vector2D slashToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
+        alignWithVector(slashToMouse);
         if(currentHit > initialTime + 200)
         {
             if (getWorld() != null)
@@ -37,6 +43,8 @@ public class SlashAttack extends Actor
             }
         }
         
+        myImage1 = mySlash.getCurrentImage();
+        setImage(myImage1);
     }
 
         public void checkEnemyCollision()

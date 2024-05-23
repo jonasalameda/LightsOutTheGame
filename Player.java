@@ -34,10 +34,6 @@ public class Player extends Actor
     public void act()
     {
         int enemyCounter = getWorld().getObjects(Enemy.class).size();
-        if (Greenfoot.isKeyDown("space"))
-        {
-            attackSlash();
-        }
         if (Greenfoot.isKeyDown("w")) {
             setLocation(getX(), getY() - speed); // Move upwards
         }
@@ -52,13 +48,12 @@ public class Player extends Actor
         }
         MouseInfo mouse = Greenfoot.getMouseInfo();
         if (mouse != null) {
-            Vector2D slashToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
-            
-            alignWithVector(slashToMouse);
+            Vector2D playerToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
+            alignWithVector(playerToMouse);
             
             if (Greenfoot.mouseClicked(null)) {
-                slashToMouse.normalize();
-                slashToMouse = Vector2D.multiply(slashToMouse, 10);
+                playerToMouse.normalize();
+                playerToMouse = Vector2D.multiply(playerToMouse, 20);
                 
                 SlashAttack attack = new SlashAttack();
                 
