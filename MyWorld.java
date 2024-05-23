@@ -10,7 +10,7 @@ public class MyWorld extends World
 {
     Player player = new Player();
     long lastAdded = System.currentTimeMillis();
-    public int roomCounter = 0;
+    public static int roomCounter = 0;
     public int enemyCounter = 5;
     int currentEnemies = 0;
     public boolean canLeave = false;

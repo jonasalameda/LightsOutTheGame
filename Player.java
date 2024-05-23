@@ -66,9 +66,7 @@ public class Player extends Actor
             }
         }
           if (enemyCounter == 0){
-            MyWorld world = (MyWorld) getWorld();
             checkRoomTransition1();
-            world.roomCounter++;
         }
     }
     
@@ -85,6 +83,7 @@ public class Player extends Actor
         public void checkRoomTransition1() {
         int randomNum = Greenfoot.getRandomNumber(3);
         if (getY() <= 10) {
+            MyWorld.roomCounter++;
             switch(randomNum) {
                 case(0):
                     Greenfoot.setWorld(new Room1());
@@ -94,8 +93,10 @@ public class Player extends Actor
                     break;
                 default:
                     Greenfoot.setWorld(new MyWorld());
+                    break;
             }
         } else if (getY()>getWorld().getHeight()-10) {
+            MyWorld.roomCounter++;
             switch(randomNum) {
                 case(0):
                     Greenfoot.setWorld(new Room1());
@@ -105,6 +106,7 @@ public class Player extends Actor
                     break;
                 default:
                     Greenfoot.setWorld(new MyWorld());
+                    break;
             }
         }
     }
