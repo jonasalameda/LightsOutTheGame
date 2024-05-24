@@ -22,6 +22,7 @@ public class Projectile extends Actor
             if (((Player) player).health <= 0) {
                 // Remove the player from the world
                 getWorld().removeObject(player);
+                Greenfoot.setWorld(new GameOverWorld());
             }
             // Remove the projectile from the world
             getWorld().removeObject(this);
