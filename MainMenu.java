@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MainMenu extends World
 {
-
     /**
      * Constructor for objects of class MainMenu.
      * 
@@ -27,5 +26,6 @@ public class MainMenu extends World
     {
         StartButton startButton = new StartButton();
         addObject(startButton,419,335);
+        MyWorld.roomCounter = 0;
     }
 }

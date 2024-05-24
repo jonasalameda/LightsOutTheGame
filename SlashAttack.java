@@ -29,10 +29,6 @@ public class SlashAttack extends Actor
         long currentHit = System.currentTimeMillis();
         Vector2D slashToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
         alignWithVector(slashToMouse);
-        if (currentHit > initialTime + 100) {
-            myImage1 = mySlash.getCurrentImage();
-            setImage(myImage1);
-        }
         if(currentHit > initialTime + 500)
         {
             if (getWorld() != null)
@@ -42,28 +38,54 @@ public class SlashAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime + 450){
+            if(currentHit > initialTime + 460){
                 checkEnemyCollision();
+                checkMiniBossCollision();
             }
         }
-        
+        if (currentHit > initialTime + 100) {
+            myImage1 = mySlash.getCurrentImage();
+            setImage(myImage1);
+        }
     }
 
         public void checkEnemyCollision()
     {
         Actor enemy = getOneIntersectingObject(Enemy.class);
+        int slashDamage = 1;
+        if (MyWorld.roomCounter % 5 == 0) {
+            slashDamage += 2;
+        }
         if (enemy != null) 
         {
-           processEnemyHit((Enemy) enemy);
+           processEnemyHit((Enemy)enemy, slashDamage);
         }
     }
-    public void processEnemyHit(Enemy enemy)
+    public void processEnemyHit(Enemy enemy, int dmg)
     {
         // You could remove health here before in a doDamage method on the enemy for example
-        if (enemy.health != 0) {
-            enemy.health -= 1;
+        if (enemy.health > 0) {
+            enemy.health -= dmg;
         } else {
             getWorld().removeObject(enemy);
+        }
+    }
+    
+        public void checkMiniBossCollision()
+    {
+        Actor miniBoss = getOneIntersectingObject(MiniBoss.class);
+        if (miniBoss != null) 
+        {
+           processMiniBossHit((MiniBoss) miniBoss);
+        }
+    }
+    public void processMiniBossHit(MiniBoss miniBoss)
+    {
+        // You could remove health here before in a doDamage method on the enemy for example
+        if (miniBoss.health != 0) {
+            miniBoss.health -= 1;
+        } else {
+            getWorld().removeObject(miniBoss);
         }
     }
     

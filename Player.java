@@ -27,10 +27,10 @@ public class Player extends Actor
             lastSlash = System.currentTimeMillis();
             // Look up the canonball lab for spawning with mouse
             // Use the constructor to change the rotation
-            world.addObject(new SlashAttack(90),getX() + 10,getY()-10);
+            world.addObject(new SlashAttack(90),getX(),getY());
         }
     }
-   
+    
     public void act()
     {
         int enemyCounter = getWorld().getObjects(Enemy.class).size();
@@ -47,11 +47,11 @@ public class Player extends Actor
             setLocation(getX() + speed, getY()); // Move right
         }
         MouseInfo mouse = Greenfoot.getMouseInfo();
-        if (mouse != null && getObjectsInRange(300, SlashAttack.class).isEmpty()) {
+        if (mouse != null && getObjectsInRange(150, SlashAttack.class).isEmpty()) {
             Vector2D playerToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
             alignWithVector(playerToMouse);
             
-            if (Greenfoot.mouseClicked(null)) {
+            if (mouse.getButton() == 1) {
                 playerToMouse.normalize();
                 playerToMouse = Vector2D.multiply(playerToMouse, 20);
                 
@@ -77,7 +77,7 @@ public class Player extends Actor
     
         public void checkRoomTransition1() {
         int randomNum = Greenfoot.getRandomNumber(3);
-        if (getY() <= 10) {
+        if (getY() <= 10 && MyWorld.roomCounter % 5 != 0 && MyWorld.roomCounter % 10 != 0) {
             MyWorld.roomCounter++;
             switch(randomNum) {
                 case(0):
@@ -90,7 +90,7 @@ public class Player extends Actor
                     Greenfoot.setWorld(new MyWorld());
                     break;
             }
-        } else if (getY()>getWorld().getHeight()-10) {
+        } else if (getY()>getWorld().getHeight()-10 && MyWorld.roomCounter % 5 != 0 && MyWorld.roomCounter % 10 != 0) {
             MyWorld.roomCounter++;
             switch(randomNum) {
                 case(0):
@@ -103,6 +103,8 @@ public class Player extends Actor
                     Greenfoot.setWorld(new MyWorld());
                     break;
             }
+        } else if (MyWorld.roomCounter % 5 == 0 && MyWorld.roomCounter % 10 != 0) {
+            Greenfoot.setWorld(new MiniBossRoom());
         }
     }
 }
