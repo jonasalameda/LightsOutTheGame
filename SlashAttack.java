@@ -11,6 +11,7 @@ public class SlashAttack extends Actor
     GifImage mySlash;
     GreenfootImage myImage1;
     long initialTime = System.currentTimeMillis();
+    int slashDamage = 1;
     public SlashAttack()
     {
         mySlash = new GifImage("slash.gif");
@@ -38,9 +39,10 @@ public class SlashAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime + 460){
+            if(currentHit > initialTime + 480){
                 checkEnemyCollision();
                 checkMiniBossCollision();
+                checkRangedEnemyCollision();
             }
         }
         if (currentHit > initialTime + 100) {
@@ -52,7 +54,6 @@ public class SlashAttack extends Actor
         public void checkEnemyCollision()
     {
         Actor enemy = getOneIntersectingObject(Enemy.class);
-        int slashDamage = 1;
         if (MyWorld.roomCounter % 5 == 0) {
             slashDamage += 2;
         }
@@ -68,6 +69,7 @@ public class SlashAttack extends Actor
             enemy.health -= dmg;
         } else {
             getWorld().removeObject(enemy);
+            MyWorld.enemyCounter--;
         }
     }
     
@@ -86,8 +88,28 @@ public class SlashAttack extends Actor
             miniBoss.health -= 1;
         } else {
             getWorld().removeObject(miniBoss);
+
         }
     }
+    
+        public void checkRangedEnemyCollision()
+    {
+        Actor ranged = getOneIntersectingObject(RangedEnemy.class);
+        if (ranged != null) 
+        {
+           processMiniBossHit((RangedEnemy) ranged);
+        }
+    }
+    public void processMiniBossHit(RangedEnemy ranged)
+    {
+        // You could remove health here before in a doDamage method on the enemy for example
+        if (ranged.health != 0) {
+            ranged.health -= 1;
+        } else {
+            getWorld().removeObject(ranged);
+        }
+    }
+    
     
         public void alignWithVector(Vector2D v) {
             double adjacent = v.getX();

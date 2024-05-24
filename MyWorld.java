@@ -33,16 +33,28 @@ public class MyWorld extends World
     private void prepare()
     {
         addObject(player,300,500);
+        enemyCounter = 5 + roomCounter;
     }
     public void spawnMoreEnemies()
     {
         long curTime  = System.currentTimeMillis();
+        int randNum = Greenfoot.getRandomNumber(2);
         if (curTime >= lastAdded + 500 && currentEnemies < enemyCounter) {//5000ms = 5s
             int y = Greenfoot.getRandomNumber(getHeight());
             int x = Greenfoot.getRandomNumber(getWidth());
-            addObject(new Enemy(),x,y);
+            switch (randNum) {
+                case (0):
+                    addObject(new Enemy(),x,y);
+                    break;
+                case (1):
+                    addObject(new RangedEnemy(),x,y);
+                    break;
+                default:
+                    addObject(new Enemy(),x,y);
+                    break;
+            }
             lastAdded = curTime;
-            currentEnemies++;
+            enemyCounter--;
         }
     }
     public void act() {
