@@ -58,7 +58,7 @@ public void dealDamage() {
     long currentHit = System.currentTimeMillis();
     if (currentHit >= lastHit + 500) {//1000ms = 1s
         if (intersects(player)) {
-            if (player.health != 0) {
+            if (player.health > 0) {
                 player.health -= 5;
                 lastHit = System.currentTimeMillis();
             } else {

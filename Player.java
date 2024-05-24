@@ -75,36 +75,26 @@ public class Player extends Actor
             setRotation((int) angleDegrees);
     }
     
-        public void checkRoomTransition1() {
+    public void checkRoomTransition1() {
         int randomNum = Greenfoot.getRandomNumber(3);
-        if (getY() <= 10 && MyWorld.roomCounter % 5 != 0 && MyWorld.roomCounter % 10 != 0) {
+        if (getY() <= 10 || getY() > getWorld().getHeight() - 10) {
             MyWorld.roomCounter++;
-            switch(randomNum) {
-                case(0):
-                    Greenfoot.setWorld(new Room1());
-                    break;
-                case(1):
-                    Greenfoot.setWorld(new Room2());
-                    break;
-                default:
-                    Greenfoot.setWorld(new MyWorld());
-                    break;
+            if (MyWorld.roomCounter % 5 == 0 && MyWorld.roomCounter != 1) {
+                Greenfoot.setWorld(new MiniBossRoom());
+                MyWorld.enemyCounter += 1;
+            } else {
+                switch(randomNum) {
+                    case(0):
+                        Greenfoot.setWorld(new Room1());
+                        break;
+                    case(1):
+                        Greenfoot.setWorld(new Room2());
+                        break;
+                    default:
+                        Greenfoot.setWorld(new MyWorld());
+                        break;
+                }
             }
-        } else if (getY()>getWorld().getHeight()-10 && MyWorld.roomCounter % 5 != 0 && MyWorld.roomCounter % 10 != 0) {
-            MyWorld.roomCounter++;
-            switch(randomNum) {
-                case(0):
-                    Greenfoot.setWorld(new Room1());
-                    break;
-                case(1):
-                    Greenfoot.setWorld(new Room2());
-                    break;
-                default:
-                    Greenfoot.setWorld(new MyWorld());
-                    break;
-            }
-        } else if (MyWorld.roomCounter % 5 == 0 && MyWorld.roomCounter % 10 != 0) {
-            Greenfoot.setWorld(new MiniBossRoom());
         }
     }
 }

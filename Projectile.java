@@ -17,7 +17,12 @@ public class Projectile extends Actor
         Actor player = getOneIntersectingObject(Player.class);
         if (player != null) {
             // Reduce player's health
-            ((Player) player).reduceHealth(10);
+            ((Player) player).health -= 5;
+            // Check if player's health is zero or less
+            if (((Player) player).health <= 0) {
+                // Remove the player from the world
+                getWorld().removeObject(player);
+            }
             // Remove the projectile from the world
             getWorld().removeObject(this);
         } else if (isAtEdge()) {
