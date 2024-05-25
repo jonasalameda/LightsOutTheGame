@@ -15,7 +15,7 @@ public class RangedEnemy extends Actor
     private int x;
     public int health = 5;
     long lastHit = System.currentTimeMillis();
-    private int shootDelay = 400; // Adjust the delay
+    private int shootDelay = 350; // Adjust the delay
     private int shootTimer = 0;
     /**
      * Act - do whatever the MiniBoss wants to do. This method is called whenever

@@ -40,7 +40,6 @@ public void moveAround()
     MyWorld world = (MyWorld) getWorld();
     Actor player = world.player;
     if (player != null) {
-        
         if (isAtEdge()) {
             turn(180);
         }
@@ -57,7 +56,7 @@ public void dealDamage() {
         return;
     long currentHit = System.currentTimeMillis();
     if (currentHit >= lastHit + 500) {//1000ms = 1s
-        if (intersects(player)) {
+        if (intersects(player) && Player.isDashing == false) {
             if (player.health > 0) {
                 player.health -= 5;
                 lastHit = System.currentTimeMillis();

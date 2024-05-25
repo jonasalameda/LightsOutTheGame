@@ -11,9 +11,9 @@ public class MyWorld extends World
     Player player = new Player();
     long lastAdded = System.currentTimeMillis();
     public static int roomCounter = 0;
-    public static int enemyCounter = 5 + roomCounter;
-    int currentEnemies = 0;
+    public int enemyCounter = 5 + roomCounter;
     public boolean canLeave = false;
+    int currentEnemies = 0;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -22,7 +22,7 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1);
-
+        enemyCounter = 5 + roomCounter;
         prepare();
     }
     
@@ -33,7 +33,6 @@ public class MyWorld extends World
     private void prepare()
     {
         addObject(player,300,500);
-        enemyCounter = 5 + roomCounter;
     }
     public void spawnMoreEnemies()
     {
@@ -54,7 +53,6 @@ public class MyWorld extends World
                     break;
             }
             lastAdded = curTime;
-            enemyCounter--;
             currentEnemies++;
         }
     }

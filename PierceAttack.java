@@ -16,9 +16,11 @@ public class PierceAttack extends Actor
     GreenfootImage myImage1;
     long initialTime = System.currentTimeMillis();
     int pierceDamage = 4;
+    MyWorld world = (MyWorld) getWorld();
+    boolean canPierce = false;
     public PierceAttack()
     {
-        piercing = new GifImage("Pierce.gif");
+        piercing = new GifImage("Pierce1.gif");
     }
     public PierceAttack(int rotation)
     {
@@ -32,7 +34,7 @@ public class PierceAttack extends Actor
     {
         MouseInfo mouse = Greenfoot.getMouseInfo();
         long currentHit = System.currentTimeMillis();
-        Vector2D slashToMouse = new Vector2D(mouse.getX() - getX() + 70, mouse.getY() - getY());
+        Vector2D slashToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
         alignWithVector(slashToMouse);
         if(currentHit > initialTime + 950)
         {
@@ -43,16 +45,18 @@ public class PierceAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime + 940){
+            if(currentHit > initialTime && !canPierce){
                 checkEnemyCollision();
                 checkMiniBossCollision();
                 checkRangedEnemyCollision();
+                canPierce = true;
             }
         }
         if (currentHit > initialTime + 0) {
             myImage1 = piercing.getCurrentImage();
             setImage(myImage1);
         }
+        
     }
 
         public void checkEnemyCollision()
@@ -69,11 +73,10 @@ public class PierceAttack extends Actor
     public void processEnemyHit(Enemy enemy)
     {
         // You could remove health here before in a doDamage method on the enemy for example
-        if (enemy.health > 0) {
+        if (enemy.health >= 0) {
             enemy.health -= pierceDamage;
         } else {
             getWorld().removeObject(enemy);
-            MyWorld.enemyCounter--;
         }
     }
     
@@ -88,7 +91,7 @@ public class PierceAttack extends Actor
     public void processMiniBossHit(MiniBoss miniBoss)
     {
         // You could remove health here before in a doDamage method on the enemy for example
-        if (miniBoss.health > 0) {
+        if (miniBoss.health >= 0) {
             miniBoss.health -= pierceDamage;
         } else {
             getWorld().removeObject(miniBoss);
@@ -106,10 +109,11 @@ public class PierceAttack extends Actor
     public void processMiniBossHit(RangedEnemy ranged)
     {
         // You could remove health here before in a doDamage method on the enemy for example
-        if (ranged.health > 0) {
+        if (ranged.health >= 0) {
             ranged.health -= pierceDamage;
         } else {
             getWorld().removeObject(ranged);
+   
         }
     }
     

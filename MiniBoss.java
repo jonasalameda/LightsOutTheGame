@@ -11,7 +11,7 @@ public class MiniBoss extends Actor
     private int x;
     public int health = 100;
     long lastHit = System.currentTimeMillis();
-    private int shootDelay = 20; // Adjust the delay
+    private int shootDelay = 90; // Adjust the delay
     private int shootTimer = 0;
     /**
      * Act - do whatever the MiniBoss wants to do. This method is called whenever

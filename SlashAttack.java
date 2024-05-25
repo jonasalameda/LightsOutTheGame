@@ -12,6 +12,8 @@ public class SlashAttack extends Actor
     GreenfootImage myImage1;
     long initialTime = System.currentTimeMillis();
     int slashDamage = 1;
+    boolean canSlash = false;
+    MyWorld world = (MyWorld) getWorld();
     public SlashAttack()
     {
         mySlash = new GifImage("slash.gif");
@@ -30,7 +32,7 @@ public class SlashAttack extends Actor
         long currentHit = System.currentTimeMillis();
         Vector2D slashToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
         alignWithVector(slashToMouse);
-        if(currentHit > initialTime + 500)
+        if(currentHit > initialTime + 250)
         {
             if (getWorld() != null)
             {
@@ -39,10 +41,11 @@ public class SlashAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime + 480){
+            if(!canSlash){
                 checkEnemyCollision();
                 checkMiniBossCollision();
                 checkRangedEnemyCollision();
+                canSlash = true;
             }
         }
         if (currentHit > initialTime + 100) {
@@ -65,11 +68,11 @@ public class SlashAttack extends Actor
     public void processEnemyHit(Enemy enemy, int dmg)
     {
         // You could remove health here before in a doDamage method on the enemy for example
-        if (enemy.health > 0) {
+        if (enemy.health >= 0) {
             enemy.health -= dmg;
         } else {
             getWorld().removeObject(enemy);
-            MyWorld.enemyCounter--;
+    
         }
     }
     
@@ -84,7 +87,7 @@ public class SlashAttack extends Actor
     public void processMiniBossHit(MiniBoss miniBoss)
     {
         // You could remove health here before in a doDamage method on the enemy for example
-        if (miniBoss.health != 0) {
+        if (miniBoss.health >= 0) {
             miniBoss.health -= slashDamage;
         } else {
             getWorld().removeObject(miniBoss);
@@ -97,16 +100,18 @@ public class SlashAttack extends Actor
         Actor ranged = getOneIntersectingObject(RangedEnemy.class);
         if (ranged != null) 
         {
-           processMiniBossHit((RangedEnemy) ranged);
+           processRangedEnemyHit((RangedEnemy) ranged);
         }
     }
-    public void processMiniBossHit(RangedEnemy ranged)
+    
+    public void processRangedEnemyHit(RangedEnemy ranged)
     {
         // You could remove health here before in a doDamage method on the enemy for example
-        if (ranged.health != 0) {
+        if (ranged.health >= 0) {
             ranged.health -= slashDamage;
         } else {
             getWorld().removeObject(ranged);
+    
         }
     }
     
