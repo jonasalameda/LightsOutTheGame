@@ -45,7 +45,7 @@ public class PierceAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime && !canPierce){
+            if(!canPierce){
                 checkEnemyCollision();
                 checkMiniBossCollision();
                 checkRangedEnemyCollision();

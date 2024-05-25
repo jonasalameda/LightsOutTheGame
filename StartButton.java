@@ -14,19 +14,8 @@ public class StartButton extends Actor
      */
 public void act() 
     {
-        if (Greenfoot.mouseMoved(this))
-        {
-            setImage("StartButton.png");
-        }
-
-        if (Greenfoot.mouseMoved(getWorld()))
-        {
-            setImage("StartButton.png");
-        }
-
         if (Greenfoot.mouseClicked(this))
         {
-
             Display display = new Display();
             getWorld().addObject(display , 280, 500);
             Greenfoot.setWorld(new MyWorld());

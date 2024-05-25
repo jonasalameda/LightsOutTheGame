@@ -90,6 +90,10 @@ public class Player extends Actor
         int randomNum = Greenfoot.getRandomNumber(3);
         if (getY() <= 10 || getY() > getWorld().getHeight() - 10) {
             MyWorld.roomCounter++;
+            if (MyWorld.roomCounter % 20 == 0 && MyWorld.roomCounter != 1) {
+                Greenfoot.setWorld(new MiniBossRoom());
+                maxHealth += 150;
+            }
             if (MyWorld.roomCounter % 5 == 0 && MyWorld.roomCounter != 1) {
                 maxHealth += 50;
                 Greenfoot.setWorld(new MiniBossRoom());
