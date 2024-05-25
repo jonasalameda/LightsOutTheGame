@@ -55,6 +55,7 @@ public class MyWorld extends World
             }
             lastAdded = curTime;
             enemyCounter--;
+            currentEnemies++;
         }
     }
     public void act() {

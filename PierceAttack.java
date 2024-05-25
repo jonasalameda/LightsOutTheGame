@@ -1,22 +1,26 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SlashAttack here.
+ * Write a description of class PierceAttack here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class SlashAttack extends Actor
+public class PierceAttack extends Actor
 {
-    GifImage mySlash;
+    /**
+     * Act - do whatever the PierceAttack wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    GifImage piercing;
     GreenfootImage myImage1;
     long initialTime = System.currentTimeMillis();
-    int slashDamage = 1;
-    public SlashAttack()
+    int pierceDamage = 4;
+    public PierceAttack()
     {
-        mySlash = new GifImage("slash.gif");
+        piercing = new GifImage("Pierce.gif");
     }
-    public SlashAttack(int rotation)
+    public PierceAttack(int rotation)
     {
         turn(rotation);
     }
@@ -28,9 +32,9 @@ public class SlashAttack extends Actor
     {
         MouseInfo mouse = Greenfoot.getMouseInfo();
         long currentHit = System.currentTimeMillis();
-        Vector2D slashToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
+        Vector2D slashToMouse = new Vector2D(mouse.getX() - getX() + 70, mouse.getY() - getY());
         alignWithVector(slashToMouse);
-        if(currentHit > initialTime + 500)
+        if(currentHit > initialTime + 950)
         {
             if (getWorld() != null)
             {
@@ -39,14 +43,14 @@ public class SlashAttack extends Actor
         }
         else 
         {
-            if(currentHit > initialTime + 480){
+            if(currentHit > initialTime + 940){
                 checkEnemyCollision();
                 checkMiniBossCollision();
                 checkRangedEnemyCollision();
             }
         }
-        if (currentHit > initialTime + 100) {
-            myImage1 = mySlash.getCurrentImage();
+        if (currentHit > initialTime + 0) {
+            myImage1 = piercing.getCurrentImage();
             setImage(myImage1);
         }
     }
@@ -55,18 +59,18 @@ public class SlashAttack extends Actor
     {
         Actor enemy = getOneIntersectingObject(Enemy.class);
         if (MyWorld.roomCounter % 5 == 0) {
-            slashDamage += 2;
+            pierceDamage += 4;
         }
         if (enemy != null) 
         {
-           processEnemyHit((Enemy)enemy, slashDamage);
+           processEnemyHit((Enemy)enemy);
         }
     }
-    public void processEnemyHit(Enemy enemy, int dmg)
+    public void processEnemyHit(Enemy enemy)
     {
         // You could remove health here before in a doDamage method on the enemy for example
         if (enemy.health > 0) {
-            enemy.health -= dmg;
+            enemy.health -= pierceDamage;
         } else {
             getWorld().removeObject(enemy);
             MyWorld.enemyCounter--;
@@ -84,11 +88,10 @@ public class SlashAttack extends Actor
     public void processMiniBossHit(MiniBoss miniBoss)
     {
         // You could remove health here before in a doDamage method on the enemy for example
-        if (miniBoss.health != 0) {
-            miniBoss.health -= slashDamage;
+        if (miniBoss.health > 0) {
+            miniBoss.health -= pierceDamage;
         } else {
             getWorld().removeObject(miniBoss);
-
         }
     }
     
@@ -103,21 +106,26 @@ public class SlashAttack extends Actor
     public void processMiniBossHit(RangedEnemy ranged)
     {
         // You could remove health here before in a doDamage method on the enemy for example
-        if (ranged.health != 0) {
-            ranged.health -= slashDamage;
+        if (ranged.health > 0) {
+            ranged.health -= pierceDamage;
         } else {
             getWorld().removeObject(ranged);
         }
     }
     
     
-        public void alignWithVector(Vector2D v) {
+    private boolean isRotated = false;
+    
+    public void alignWithVector(Vector2D v) {
+        if (!isRotated) {
             double adjacent = v.getX();
             double opposite = v.getY();
-            
+    
             double angleRadians = Math.atan2(opposite, adjacent);
             double angleDegrees = Math.toDegrees(angleRadians);
-            
+    
             setRotation((int) angleDegrees);
+            isRotated = true;
+        }
     }
 }

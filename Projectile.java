@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Projectile extends Actor
 {
       public void act() {
-        move(5); // Adjust the speed as needed
+        move(7); // Adjust the speed as needed
         checkCollision();
     }
     
