@@ -21,11 +21,11 @@ public class GameOverWorld extends World
         showText("Game Over", getWidth() / 2, getHeight() / 2 - 50);
         showText("Press 'R' to Restart or 'Q' to Quit", getWidth() / 2, getHeight() / 2);
     }
-      public void act() {
+    public void act() {
         if (Greenfoot.isKeyDown("r")) {
             Greenfoot.setWorld(new MyWorld());
         } else if (Greenfoot.isKeyDown("q")) {
             Greenfoot.stop();
         }
-}
+    }
 }

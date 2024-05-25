@@ -16,6 +16,16 @@ public class GameWinWorld extends World
     public GameWinWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(900, 600, 1); 
+        super(795, 533, 1);
+        showText("You Won!", getWidth() / 2, getHeight() / 2 - 50);
+        showText("Press 'R' to Play again or 'Q' to Quit!", getWidth() / 2, getHeight() / 2);
+    }
+    
+        public void act() {
+        if (Greenfoot.isKeyDown("r")) {
+            Greenfoot.setWorld(new MainMenu());
+        } else if (Greenfoot.isKeyDown("q")) {
+            Greenfoot.stop();
+        }
     }
 }
