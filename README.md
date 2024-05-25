@@ -14,14 +14,14 @@ The purpose of this project is to share this game among our school and our teach
 - Download the ZIP file of this project
 - Execute the project.greenfoot file
 ## AUTHORS:
-Jonas: Most of the code (starting from gameplay and ending at enemy AI), art implementation and README.md file
-Helene: Enemy, menu art and most ideas
-Kiara: Menu code and art ideas
-Nico: Code for World transition, Enemy AI and minor bug fixes.
+- Jonas: Most of the code (starting from gameplay and ending at enemy AI), art implementation and README.md file
+- Helene: Enemy, menu art and most ideas
+- Kiara: Menu code and art ideas
+- Nico: Code for World transition, Enemy AI and minor bug fixes.
 
 #### Collaborators:
-Giovane (Third-party, friend of Jonas): Background art
-Danilo Bernardi (Third-party, friend of Jonas): Character art
+- Giovane (Third-party, friend of Jonas): Background art (beautiful by the way)
+- Danilo Bernardi (Third-party, friend of Jonas): Character art
 
 ## USER INSTRUCTIONS:
 - W: move up
