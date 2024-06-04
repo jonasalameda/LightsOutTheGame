@@ -18,6 +18,8 @@ public void act()
         {
             Display display = new Display();
             getWorld().addObject(display , 280, 500);
+            getWorld().stopped();
+            new MyWorld().started();
             Greenfoot.setWorld(new MyWorld());
         }
     }   

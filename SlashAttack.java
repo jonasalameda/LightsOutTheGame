@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class SlashAttack extends Actor
 {
     GifImage mySlash;
+    private GreenfootSound slashSound = new GreenfootSound("slasheffect.mp3");
     GreenfootImage myImage1;
     long initialTime = System.currentTimeMillis();
     int slashDamage = 1;
@@ -17,6 +18,7 @@ public class SlashAttack extends Actor
     public SlashAttack()
     {
         mySlash = new GifImage("slash.gif");
+        slashSound.play();
     }
     public SlashAttack(int rotation)
     {

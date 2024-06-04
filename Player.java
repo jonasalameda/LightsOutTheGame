@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class Player extends Actor
 {
+  
+    private GreenfootSound pierceSound = new GreenfootSound("pierceslash.mp3");
     GreenfootImage character1 = new GreenfootImage("MainCharacter1.png");
     GreenfootImage character2 = new GreenfootImage("MainCharacter2.png");
     GreenfootImage character3 = new GreenfootImage("MainCharacter3.png");
@@ -42,7 +44,7 @@ public class Player extends Actor
             setImage(character4);
         }
         MouseInfo mouse = Greenfoot.getMouseInfo();
-        if (mouse != null && getObjectsInRange(150, SlashAttack.class).isEmpty()) {
+        if (mouse != null && getObjectsInRange(200, SlashAttack.class).isEmpty()) {
             Vector2D playerToMouse = new Vector2D(mouse.getX() - getX(), mouse.getY() - getY());
             alignWithVector(playerToMouse);
             
@@ -60,6 +62,7 @@ public class Player extends Actor
             alignWithVector(playerToMouse);
             
             if (mouse.getButton() == 3) {
+                pierceSound.play();
                 playerToMouse.normalize();
                 playerToMouse = Vector2D.multiply(playerToMouse, 20);
                 
@@ -91,7 +94,9 @@ public class Player extends Actor
         if (getY() <= 10 || getY() > getWorld().getHeight() - 10) {
             MyWorld.roomCounter++;
             if (MyWorld.roomCounter % 20 == 0 && MyWorld.roomCounter != 1) {
-                Greenfoot.setWorld(new MiniBossRoom());
+                getWorld().stopped();
+                new BossRoom().started();
+                Greenfoot.setWorld(new BossRoom());
                 maxHealth += 150;
             }
             if (MyWorld.roomCounter % 5 == 0 && MyWorld.roomCounter != 1) {

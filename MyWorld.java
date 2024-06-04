@@ -14,6 +14,7 @@ public class MyWorld extends World
     public int enemyCounter = 5 + roomCounter;
     public boolean canLeave = false;
     int currentEnemies = 0;
+    private GreenfootSound gameMusic;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -22,10 +23,16 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1);
+        gameMusic = new GreenfootSound("normalfight1.mp3");
         enemyCounter = 5 + roomCounter;
         prepare();
     }
-    
+        public void started(){
+        gameMusic.playLoop();
+    }
+        public void stopped(){
+        gameMusic.stop();
+    }
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.

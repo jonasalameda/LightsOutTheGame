@@ -15,13 +15,17 @@ public class Projectile extends Actor
     
     private void checkCollision() {
         Actor player = getOneIntersectingObject(Player.class);
+        World world = getWorld();
         if (player != null) {
             // Reduce player's health
             ((Player) player).health -= 5;
             // Check if player's health is zero or less
             if (((Player) player).health <= 0) {
                 // Remove the player from the world
+                getWorld().stopped();
+                getWorld().stopped();
                 getWorld().removeObject(player);
+                new GameOverWorld().started();
                 Greenfoot.setWorld(new GameOverWorld());
             }
             // Remove the projectile from the world

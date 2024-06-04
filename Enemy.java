@@ -65,6 +65,8 @@ public void dealDamage() {
                 {
                     world.player = null;
                     getWorld().removeObject(player);
+                    world.stopped();
+                    new GameOverWorld().started();
                     Greenfoot.setWorld(new GameOverWorld());
                 }
             }

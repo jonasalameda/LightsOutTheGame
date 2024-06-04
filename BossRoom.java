@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class BossRoom extends World
 {
-
+    private GreenfootSound gameMusic;
     /**
      * Constructor for objects of class BossRoom.
      * 
@@ -17,6 +17,8 @@ public class BossRoom extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 650, 1); 
+        gameMusic = new GreenfootSound("finalboss.mp3");
+        started();
         prepare();
     }
     /**
@@ -35,16 +37,27 @@ public class BossRoom extends World
         addObject(miniBoss4,89,518);
         Player player = new Player();
         addObject(player,477,422);
+        if (new GreenfootSound("normalfight1.mp3").isPlaying()){
+            new GreenfootSound("normalfight1.mp3").stop();
+        }
+        
     }
     
-public void act() {
-    // Get a list of all MiniBoss objects in the world
-    List<MiniBoss> miniBosses = getObjects(MiniBoss.class);
-
-    // If there are no MiniBoss objects left
-    if (miniBosses.isEmpty()) {
-        // Switch to GameWinWorld
-        Greenfoot.setWorld(new GameWinWorld());
+    public void act() {
+        // Get a list of all MiniBoss objects in the world
+        List<MiniBoss> miniBosses = getObjects(MiniBoss.class);
+        // If there are no MiniBoss objects left
+        if (miniBosses.isEmpty()) {
+            // Switch to GameWinWorld
+            stopped();
+            stopped();
+            Greenfoot.setWorld(new GameWinWorld());
+        }
     }
-}
+    public void started(){
+        gameMusic.playLoop();
+    }
+        public void stopped(){
+        gameMusic.stop();
+    }
 }
