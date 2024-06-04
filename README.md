@@ -1,8 +1,3 @@
-------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all they need to know. The comments should usually include at least:
-------------------------------------------------------------------------
 
 # LIGHTS OUT
 ## PURPOSE OF PROJECT: 
@@ -14,14 +9,14 @@ The purpose of this project is to share this game among our school and our teach
 - Download the ZIP file of this project
 - Execute the project.greenfoot file
 ## AUTHORS:
-- Jonas: Most of the code (starting from gameplay and ending at enemy AI), art implementation and README.md file
-- Helene: Enemy, menu art and most ideas
-- Kiara: Menu code and art ideas
-- Nico: Code for World transition, Enemy AI and minor bug fixes.
+- Jonas: Most of the code, art implementation and README.md file
+- Helene: Enemy and menu art, most ideas for art designs, and made most of the game document
+- Kiara: Menu code, art ideas about the background, made most of the game document
+- Nico: Code for World transition, Enemy AI, minor bug fixes, mechanics ideas and implementations.
 
 #### Collaborators:
-- Giovane (Third-party, friend of Jonas): Background art (beautiful by the way)
-- Danilo Bernardi (Third-party, friend of Jonas): Character art
+- Giovane (Third-party, Jonas's friend): Background art (beautiful by the way)
+- Danilo Bernardi (Third-party, Jonas's friend): Character art
 
 ## USER INSTRUCTIONS:
 - W: move up
