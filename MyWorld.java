@@ -26,6 +26,12 @@ public class MyWorld extends World
         gameMusic = new GreenfootSound("normalfight1.mp3");
         enemyCounter = 5 + roomCounter;
         prepare();
+        if (roomCounter < 1) {
+        showText("Free your friends!", getWidth() / 2, getHeight() / 2-50);
+        showText("Thou shalt slay all enemies! Left mouse button to slash and right to pierce!", getWidth() / 2, getHeight() / 2);
+        showText("Each FIVE rooms their boss will appear, be careful... and good luck!", getWidth() / 2, getHeight() / 2 + 50);
+    
+        }
     }
         public void started(){
         gameMusic.playLoop();
