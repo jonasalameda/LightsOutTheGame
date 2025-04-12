@@ -15,7 +15,7 @@ The purpose of this project is to share this game among our school and our teach
 - Nico: Code for World transition, Enemy AI, minor bug fixes, mechanics ideas and implementations.
 
 #### Collaborators:
-- Giovane (Third-party, Jonas's friend): Background art (beautiful by the way)
+- Giovane (Third-party, Jonas's friend): Background art (beautiful by the way) (https://github.com/gisotra)
 - Danilo Bernardi (Third-party, Jonas's friend): Character art
 
 ## USER INSTRUCTIONS:
